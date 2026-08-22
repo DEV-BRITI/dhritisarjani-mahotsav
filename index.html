@@ -32,11 +32,16 @@
     .message-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}
     .message-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 45px #2b1e160f;transition:transform .35s,box-shadow .35s}
     .message-card:hover{transform:translateY(-8px);box-shadow:0 25px 55px #2b1e1622}
-    .message-photo{height:390px;background:#211934;position:relative;overflow:hidden}
-    .message-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,#0d0a17cc 100%)}
-    .message-photo img{width:100%;height:100%;object-fit:cover;display:block}
-    .message-card:nth-child(2) .message-photo img{object-position:center 35%}
-    .message-card:nth-child(3) .message-photo img{object-position:center 20%}
+    .message-photo{height:390px;background:radial-gradient(circle at 50% 35%,#4b415f 0%,#211934 62%,#151020 100%);position:relative;overflow:hidden}
+    .message-photo:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,#0d0a17aa 100%);pointer-events:none;z-index:3}
+    .portrait-slideshow{position:absolute;inset:0}
+    .portrait-slideshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;display:block;opacity:0;transform:scale(1.012);transition:opacity 1.8s ease-in-out,transform 8s ease-out;filter:saturate(.92) contrast(1.02)}
+    .portrait-slideshow img.active{opacity:1;transform:scale(1)}
+    .slideshow-status{position:absolute;z-index:4;right:14px;bottom:14px;display:flex;gap:5px;padding:5px 7px;border-radius:999px;background:#100c18a8;backdrop-filter:blur(8px);border:1px solid #ffffff22}
+    .slideshow-status i{display:block;width:5px;height:5px;border-radius:50%;background:#ffffff55;transition:.35s}
+    .slideshow-status i.active{background:#f0bf60;box-shadow:0 0 0 2px #f0bf6022}
+    .message-photo.loading:before{content:'Loading';position:absolute;z-index:2;left:14px;top:14px;color:#fff9;font:.58rem 'DM Mono';letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+    @media(prefers-reduced-motion:reduce){.portrait-slideshow img{transition:none!important;transform:none!important}}
     .message-body{padding:24px 24px 26px}
     .message-body .role{font:.64rem 'DM Mono';letter-spacing:.13em;text-transform:uppercase;color:var(--wine)}
     .message-body h3{font-size:1.7rem;line-height:1.08;margin:9px 0 16px}
@@ -72,7 +77,13 @@
         </div>
         <div class="message-grid">
           <article class="message-card reveal">
-            <div class="message-photo"><img src="assets/thakur-4k.jpg" alt="Sree Sree Thakur Anukulchandra" loading="lazy"></div>
+            <div class="message-photo slideshow" data-slideshow="thakur">
+              <div class="portrait-slideshow" aria-live="polite">
+                <img class="active" src="assets/sree%20sree%20thakur_1.png" data-slide-src="assets/sree%20sree%20thakur_1.png" alt="Sree Sree Thakur Anukulchandra — portrait 1" loading="lazy">
+                <img src="assets/sree%20sree%20thakur_2.png" data-slide-src="assets/sree%20sree%20thakur_2.png" alt="Sree Sree Thakur Anukulchandra — portrait 2" loading="lazy">
+              </div>
+              <div class="slideshow-status" aria-hidden="true"><i class="active"></i><i></i></div>
+            </div>
             <div class="message-body">
               <span class="role">Param Premamoy</span>
               <h3>Sree Sree Thakur</h3>
@@ -81,7 +92,13 @@
             </div>
           </article>
           <article class="message-card reveal">
-            <div class="message-photo"><img src="assets/acharyadev-4k.jpg" alt="Sree Sree Acharyadev" loading="lazy"></div>
+            <div class="message-photo slideshow" data-slideshow="acharyadev">
+              <div class="portrait-slideshow" aria-live="polite">
+                <img class="active" src="assets/sree%20sree%20acharyaDeb_1.png" data-slide-src="assets/sree%20sree%20acharyaDeb_1.png" data-fallback="assets/acharyadev-4k.jpg" alt="Sree Sree Acharyadev — portrait 1" loading="lazy">
+                <img src="assets/sree%20sree%20acharyaDeb_2.png" data-slide-src="assets/sree%20sree%20acharyaDeb_2.png" data-fallback="assets/acharyadev-4k.jpg" alt="Sree Sree Acharyadev — portrait 2" loading="lazy">
+              </div>
+              <div class="slideshow-status" aria-hidden="true"><i class="active"></i><i></i></div>
+            </div>
             <div class="message-body">
               <span class="role">Spiritual Head of Satsang</span>
               <h3>Sree Sree Acharyadev</h3>
@@ -90,7 +107,13 @@
             </div>
           </article>
           <article class="message-card reveal">
-            <div class="message-photo"><img src="https://viralsigna.com.ng/wp-content/uploads/2026/01/Rev.-Abin-Dada-722x470.png" alt="Sree Sree Abin Dada" loading="lazy"></div>
+            <div class="message-photo slideshow" data-slideshow="abin">
+              <div class="portrait-slideshow" aria-live="polite">
+                <img class="active" src="assets/sree%20sree%20abindada_1.png" data-slide-src="assets/sree%20sree%20abindada_1.png" data-fallback="https://viralsigna.com.ng/wp-content/uploads/2026/01/Rev.-Abin-Dada-722x470.png" alt="Sree Sree Abin Dada — portrait 1" loading="lazy">
+                <img src="assets/sree%20sree%20abindada_2.png" data-slide-src="assets/sree%20sree%20abindada_2.png" data-fallback="https://viralsigna.com.ng/wp-content/uploads/2026/01/Rev.-Abin-Dada-722x470.png" alt="Sree Sree Abin Dada — portrait 2" loading="lazy">
+              </div>
+              <div class="slideshow-status" aria-hidden="true"><i class="active"></i><i></i></div>
+            </div>
             <div class="message-body">
               <span class="role">Young voice of service</span>
               <h3>Sree Sree Abin Dada</h3>
@@ -132,6 +155,27 @@
         el.innerHTML=lines.map(line=>`<span class="line">${line}</span>`).join('');
       });
       document.documentElement.lang=lang==='bn'?'bn':lang==='hi'?'hi':'en';
+    });
+
+    // Portrait slideshows: each card changes image every 30 seconds with a calm cross-fade.
+    document.querySelectorAll('.slideshow').forEach(card=>{
+      const images=[...card.querySelectorAll('.portrait-slideshow img')];
+      const dots=[...card.querySelectorAll('.slideshow-status i')];
+      let index=0;
+      images.forEach(img=>{
+        img.addEventListener('error',()=>{
+          const fallback=img.dataset.fallback;
+          if(fallback && img.src!==new URL(fallback,location.href).href){ img.src=fallback; }
+        },{once:true});
+      });
+      const show=next=>{
+        images[index].classList.remove('active');
+        dots[index]?.classList.remove('active');
+        index=next%images.length;
+        images[index].classList.add('active');
+        dots[index]?.classList.add('active');
+      };
+      if(images.length>1){ setInterval(()=>show(index+1),30000); }
     });
 
     const nav=document.querySelector('#nav'),links=document.querySelector('#links');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>35),{passive:true});document.querySelector('#menu').onclick=()=>links.classList.toggle('open');links.querySelectorAll('a').forEach(a=>a.onclick=()=>links.classList.remove('open'));document.querySelector('#top').onclick=()=>scrollTo({top:0,behavior:'smooth'});const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -30px'});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));const form=document.querySelector('#form'),fields=[...form.querySelectorAll('input,textarea')];['name','phone','email','message'].forEach((name,i)=>fields[i].name=name);const sendButton=document.querySelector('#submit');sendButton.textContent='Send via WhatsApp';form.onsubmit=e=>{e.preventDefault();const d=new FormData(form),message=`Joy guru, I would like to enquire about Dhriti Sarjjani Mahotsav 2k26.%0A%0AName: ${d.get('name')}%0APhone: ${d.get('phone')}%0AEmail: ${d.get('email')}%0AMessage: ${d.get('message')||'—'}`;window.open(`https://wa.me/918101144903?text=${encodeURIComponent(message)}`,'_blank','noopener');sendButton.textContent='Opening WhatsApp…';sendButton.classList.add('sent');setTimeout(()=>{sendButton.textContent='Send via WhatsApp';sendButton.classList.remove('sent')},2200)};const map=document.createElement('div');map.className='map-wrap reveal show';map.innerHTML='<div class="map-caption">Rajiv Gandhi Maidan <span>Mela Ground, B-Zone, Durgapur, West Bengal 713205</span></div><iframe src="https://www.google.com/maps?q=Rajiv+Gandhi+Maidan+B-Zone+Durgapur+West+Bengal+713205&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Rajiv Gandhi Maidan"></iframe>';document.querySelector('.contact .container').append(map);
